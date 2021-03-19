@@ -4,6 +4,7 @@
   "description": "This is backend for trendz.fashion",
   "main": "server.js",
   "scripts": {
+    "start": "node server",
     "test": "npm test"
   },
   "repository": {

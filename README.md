@@ -2,9 +2,7 @@
 
 ### E-commerce Backend API build on Express (Node)
 
-**Production Server** : Deployment link added here
-
-**Development Server** : Deployment link added here
+**Backend Production Server** : https://api-trendz-fashion.herokuapp.com/
 
 ## Install
 
