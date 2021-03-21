@@ -9,7 +9,7 @@ module.exports = function (app) {
   app.use(express.json({ extended: false }));
 
   // Routes
-  app.use('/api/v1/auth', auth);
+  app.use('/', auth);
 
   // Test Routes
   app.use('/__test', (req, res) => res.json('Hello world'));
