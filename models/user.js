@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
   isAdmin: Boolean,
+  signedInUsing: {
+    type: String,
+    default: "normal"
+  }
 });
 
 UserSchema.methods.generateAuthToken = function () {
