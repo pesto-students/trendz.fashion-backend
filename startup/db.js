@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const winston = require('winston');
 const config = require('config');
 
 //! Add your mongoURI in default.json & production.json for local & production env respectively
@@ -11,9 +12,9 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useFindAndModify: false,
     });
-    console.log('MongoDb Connected...');
+    winston.info(`Connected to MONOGODB`);
   } catch (error) {
-    console.error(error.message);
+    winston.error(error.message, error);
     //exit with failure
     process.exit(1);
   }

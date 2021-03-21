@@ -1,26 +1,15 @@
 const express = require('express');
-const cors = require('cors');
-
-const connectDB = require('./config/db');
-
+const winston = require('winston');
 const app = express();
 
+// winston logging transport
+require('./startup/logger')();
 //connect Database
-connectDB();
-
-//To Access api from other port no.
-app.use(cors());
-
-//Init Middleware
-app.use(express.json({ extended: false }));
-
-//Define Routes
-app.use('/api/v1/auth', require('./routes/api/auth'));
-
-// Test Routes
-app.use('/__test', (req, res) => res.json('Hello world'));
-app.use('/', (req, res) => res.json('Welcome to Trendz.fashion Backend'));
+require('./startup/db')();
+//Routes
+require('./startup/routes')(app);
+// Throw error if jwtSecret is not present
+require('./startup/config')();
 
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+app.listen(PORT, () => winston.info(`Server started at port ${PORT}`));
