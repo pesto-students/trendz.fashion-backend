@@ -25,6 +25,9 @@ const ProductSchema = new mongoose.Schema({
     min: 0,
     max: 5,
   },
+  images: {
+    type: Array,
+  },
   colors: {
     type: Array,
   },

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const auth = require('../routes/api/auth');
+const user = require('../routes/api/user');
 const error = require('../middleware/error');
 
 module.exports = function (app) {
@@ -10,6 +11,7 @@ module.exports = function (app) {
 
   // Routes
   app.use('/api/v1/auth', auth);
+  app.use('/api/v1/user', user);
 
   // Test Routes
   app.use('/__test', (req, res) => res.json('Hello world'));
