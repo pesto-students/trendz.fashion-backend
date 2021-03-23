@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
-const { categorySchema } = require('./category');
-
 const ProductSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    minlength: 5,
+    maxlength: 255,
   },
   description: {
     type: String,
@@ -16,10 +16,13 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  category: {
-    type: categorySchema,
-    require: true,
-  },
+  productCategory: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: 'Category',
+    },
+  ],
   rating: {
     type: Number,
     min: 0,
@@ -39,9 +42,11 @@ const ProductSchema = new mongoose.Schema({
 
 function validateProduct(product) {
   const schema = Joi.object({
-    name: Joi.string().min(5).max(50).required(),
-    email: Joi.string().min(5).max(255).required().email(),
-    password: Joi.string().min(5).max(255).required(),
+    title: Joi.string().min(5).max(255).required(),
+    description: Joi.string().min(5).required(),
+    price: Joi.number().required(),
+    productCategory: Joi.array(),
+    rating: Joi.number().min(0).max(5),
   });
 
   return schema.validate(product);

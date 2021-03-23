@@ -3,6 +3,9 @@ const cors = require('cors');
 
 const auth = require('../routes/api/auth');
 const user = require('../routes/api/user');
+const adminProduct = require('../routes/api/adminProduct');
+const adminCategory = require('../routes/api/adminCategory');
+
 const error = require('../middleware/error');
 
 module.exports = function (app) {
@@ -12,6 +15,8 @@ module.exports = function (app) {
   // Routes
   app.use('/api/v1/auth', auth);
   app.use('/api/v1/user', user);
+  app.use('/api/v1/admin/product', adminProduct);
+  app.use('/api/v1/admin/category', adminCategory);
 
   // Test Routes
   app.use('/__test', (req, res) => res.json('Hello world'));
